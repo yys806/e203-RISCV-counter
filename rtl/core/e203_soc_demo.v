@@ -16,8 +16,8 @@ module e203_soc_demo (
     output         qspi_sck,  //QSPI SCK and CS is output without enable
     output         qspi_cs,   //QSPI SCK and CS is output without enable
 
-    output  [7:0]  seg,
-    output  [3:0]  dig,
+    output  [7:0]  seg_out,
+    output  [3:0]  dig_out,
 
     input          erstn, // Erst is input need to be pull-up by default
 
@@ -304,8 +304,8 @@ e203_soc_top e203_soc_ins (
     .io_pads_qspi_cs_0_o_oval (qspi_cs),
 
     // 7-seg display outputs
-    .seg_out                  (seg),
-    .dig_out                  (dig),
+    .seg_out                  (seg_out),
+    .dig_out                  (dig_out),
 
     //QSPI DQ is bidir I/O with enable(), and need pull-up enable
     .io_pads_qspi_dq_0_i_ival   (qspi_in[0]),
