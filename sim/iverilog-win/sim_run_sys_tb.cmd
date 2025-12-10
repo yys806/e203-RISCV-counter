@@ -1,4 +1,7 @@
+set HEX=..\\..\\firmware\\hello_world\\Debug\\ram.hex
+
 iverilog -g2005-sv -o wave.out -I ../rtl/core ./sys_tb_top.sv ./gowin_sim_lib/gw2a/prim_sim.v ^
+-DE203_LOAD_PROGRAM -DITCM_HEX_PATH=\"%HEX%\" ^
 ../rtl/core/e203_defines.v ^
 ../rtl/core/e203_biu.v ^
 ../rtl/core/e203_clk_ctrl.v ^
@@ -141,4 +144,3 @@ iverilog -g2005-sv -o wave.out -I ../rtl/core ./sys_tb_top.sv ./gowin_sim_lib/gw
 ../rtl/core/sirv_uarttx.v ^
 ../rtl/core/sirv_uart.v ^
 ../rtl/core/sirv_wdog.v ^
-
