@@ -145,12 +145,16 @@ module sirv_sim_ram_itcm
 
 `ifdef E203_LOAD_PROGRAM
     initial begin
+`ifndef ITCM_HEX_PATH
+  // Default to project-root relative path (PNR 工作目录通常在 gowin_prj/impl/)
+  `define ITCM_HEX_PATH "../../firmware/hello_world/Debug/ram.hex"
+`endif
 `ifdef USING_IVERILOG   //simulation
         $display("loading firmware from simulator\n");
-        $readmemh("../firmware/hello_world/Debug/ram.hex", mem_r);
+        $readmemh(`ITCM_HEX_PATH, mem_r);
 `else                   //implementation
-        $display("loading firmware from sythesizer\n");
-        $readmemh("../firmware/hello_world/Debug/ram.hex", mem_r);
+        $display("loading firmware from sythesizer: %s\n", `ITCM_HEX_PATH);
+        $readmemh(`ITCM_HEX_PATH, mem_r);
 `endif
     end
 `endif
@@ -190,5 +194,4 @@ module sirv_sim_ram_itcm
     assign dout = dout_pre;
 
 endmodule
-
 
