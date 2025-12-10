@@ -175,8 +175,8 @@ module my_periph_example(
         end
     end
 
-    // Output mapping (common-cathode: digit select active low)
-    assign seg = disp_en ? seg_bits : 8'h00;
-    assign dig = disp_en ? ~dig_en  : 4'hF;
+    // Output mapping (active-low segments, digit enable active-high per LED board)
+    assign seg = disp_en ? ~seg_bits : 8'hFF;
+    assign dig = disp_en ?  dig_en   : 4'b0000;
 
 endmodule
