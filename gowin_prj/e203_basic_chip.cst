@@ -7,12 +7,12 @@ IO_PORT "clk_in"        IO_TYPE=LVCMOS33;
 IO_PORT "erstn"         IO_TYPE=LVCMOS33;
 
 // 4-digit 7-seg (LED board in PMOD2/3), active-low segments, digit enable active-high
-IO_LOC "seg_out[0]"     N8;
-IO_LOC "seg_out[1]"     L9;
-IO_LOC "seg_out[2]"     N7;
-IO_LOC "seg_out[3]"     N9;
-IO_LOC "seg_out[4]"     D11;
-IO_LOC "seg_out[5]"     N6;
+IO_LOC "seg_out[0]"     J16;
+IO_LOC "seg_out[1]"     J14;
+IO_LOC "seg_out[2]"     M15;
+IO_LOC "seg_out[3]"     M14;
+IO_LOC "seg_out[4]"     R11;
+IO_LOC "seg_out[5]"     T12;
 IO_LOC "seg_out[6]"     C12;
 IO_LOC "seg_out[7]"     B12;
 IO_LOC "dig_out[0]"     A14;
@@ -54,6 +54,5 @@ IO_PORT "tdi"           IO_TYPE=LVCMOS33;
 IO_PORT "tms"           PULL_MODE=UP;
 IO_PORT "tck"           PULL_MODE=UP;
 IO_PORT "tdi"           PULL_MODE=UP;
-
 
 
