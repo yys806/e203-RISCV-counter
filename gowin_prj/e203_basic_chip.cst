@@ -8,7 +8,7 @@ IO_PORT "erstn"         IO_TYPE=LVCMOS33;
 
 // 4-digit 7-seg (LED board in PMOD2/3), active-low segments, digit enable active-high
 IO_LOC "seg_out[0]"     J16;
-IO_LOC "seg_out[1]"     J14;
+IO_LOC "seg_out[1]"     P11;  // try fix missing segment 'b'
 IO_LOC "seg_out[2]"     M15;
 IO_LOC "seg_out[3]"     M14;
 IO_LOC "seg_out[4]"     R11;

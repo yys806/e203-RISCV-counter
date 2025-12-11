@@ -75,7 +75,7 @@ module my_periph_example(
     reg [1:0]  scan_idx;
     reg [15:0] div_cnt;
 
-    wire [15:0] div_reload = (ctrl_reg[15:0] == 16'd0) ? 16'd512 : ctrl_reg[15:0];
+    wire [15:0] div_reload = (ctrl_reg[15:0] == 16'd0) ? 16'd256 : ctrl_reg[15:0];
     wire        disp_en    = ctrl_reg[0];
     wire        auto_en    = ctrl_reg[1];
 
@@ -116,7 +116,7 @@ module my_periph_example(
     // Sequential logic
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            ctrl_reg   <= 32'h0000_0203; // enable=1, auto_en=1, default divider=0x200 (faster refresh)
+            ctrl_reg   <= 32'h0000_0103; // enable=1, auto_en=1, default divider=0x100 (faster refresh)
             data_reg   <= 32'h0000_0000;
             auto_data  <= 16'd0;
             rsp_rdata  <= 32'h0;
@@ -158,10 +158,8 @@ module my_periph_example(
             end
 
             // Internal auto counter as a fallback when CPU not writing
-            if (auto_en && sel_data_wr == 1'b0) begin
-                auto_data <= auto_data + 16'd1;
-                data_reg  <= data_reg; // hold unless we choose to mirror auto_data below
-                // Mirror auto_data into display when no ICB write
+            if (auto_en && sel_data_wr == 1'b0 && div_cnt == 16'd0 && scan_idx == 2'd3) begin
+                auto_data      <= auto_data + 16'd1;
                 data_reg[15:0] <= auto_data + 16'd1;
             end
 
