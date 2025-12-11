@@ -73,9 +73,15 @@ module my_periph_example(
     reg [3:0]  dig_en;      // active high internal
     reg [7:0]  seg_bits;
     reg [1:0]  scan_idx;
-    reg [15:0] div_cnt;
+    reg [15:0] scan_div_cnt;
+    reg [31:0] sec_div_cnt;
 
-    wire [15:0] div_reload = (ctrl_reg[15:0] == 16'd0) ? 16'd512 : ctrl_reg[15:0];
+    // default scan divider ~1kHz at 27MHz
+    localparam integer SCAN_DEFAULT = 16'd27000;
+    localparam integer CLK_HZ       = 27000000;
+    localparam integer SEC_TICKS    = CLK_HZ;
+
+    wire [15:0] div_reload = (ctrl_reg[15:0] == 16'd0) ? SCAN_DEFAULT : ctrl_reg[15:0];
     wire        disp_en    = ctrl_reg[0];
     wire        auto_en    = ctrl_reg[1];
 
@@ -106,25 +112,27 @@ module my_periph_example(
     endfunction
 
     // Extract current digit nibbles and dp bits
-    wire [3:0] digit0 = data_reg[3:0];
-    wire [3:0] digit1 = data_reg[7:4];
-    wire [3:0] digit2 = data_reg[11:8];
-    wire [3:0] digit3 = data_reg[15:12];
-    wire [3:0] dp_bits = data_reg[19:16];
+    wire [15:0] disp_data = auto_en ? auto_data : data_reg[15:0];
+    wire [3:0] digit0 = disp_data[3:0];
+    wire [3:0] digit1 = disp_data[7:4];
+    wire [3:0] digit2 = disp_data[11:8];
+    wire [3:0] digit3 = disp_data[15:12];
+    wire [3:0] dp_bits = auto_en ? 4'h0 : data_reg[19:16]; // dp off in auto mode
 
     // -----------------------------------------------------------------
     // Sequential logic
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            ctrl_reg   <= 32'h0000_0203; // enable=1, auto_en=1 default, divider=0x200 (balanced refresh)
-            data_reg   <= 32'h0000_0000;
-            auto_data  <= 16'd0;
-            rsp_rdata  <= 32'h0;
-            rsp_valid  <= 1'b0;
-            div_cnt    <= 16'd0;
-            scan_idx   <= 2'd0;
-            seg_bits   <= 8'h00;
-            dig_en     <= 4'b0001;
+            ctrl_reg     <= 32'h0000_0203; // enable=1, auto_en=1 default
+            data_reg     <= 32'h0000_0000;
+            auto_data    <= 16'd0;
+            rsp_rdata    <= 32'h0;
+            rsp_valid    <= 1'b0;
+            scan_div_cnt <= 16'd0;
+            sec_div_cnt  <= 32'd0;
+            scan_idx     <= 2'd0;
+            seg_bits     <= 8'h00;
+            dig_en       <= 4'b0001;
         end else begin
             // Clear response when accepted
             if (rsp_valid && i_icb_rsp_ready) begin
@@ -150,17 +158,23 @@ module my_periph_example(
             end
 
             // Scan timer
-            if (div_cnt == 16'd0) begin
-                div_cnt  <= div_reload;
-                scan_idx <= scan_idx + 2'd1;
+            if (scan_div_cnt == 16'd0) begin
+                scan_div_cnt <= div_reload;
+                scan_idx     <= scan_idx + 2'd1;
             end else begin
-                div_cnt  <= div_cnt - 16'd1;
+                scan_div_cnt <= scan_div_cnt - 16'd1;
             end
 
-            // Internal auto counter as a fallback when CPU not writing
-            if (auto_en && sel_data_wr == 1'b0 && div_cnt == 16'd0 && scan_idx == 2'd3) begin
-                auto_data      <= auto_data + 16'd1;
-                data_reg[15:0] <= auto_data + 16'd1;
+            // 1 Hz auto counter when enabled
+            if (auto_en) begin
+                if (sec_div_cnt >= SEC_TICKS-1) begin
+                    sec_div_cnt <= 32'd0;
+                    auto_data   <= auto_data + 16'd1;
+                end else begin
+                    sec_div_cnt <= sec_div_cnt + 32'd1;
+                end
+            end else begin
+                sec_div_cnt <= 32'd0;
             end
 
             // Active digit selection (internal active high)
