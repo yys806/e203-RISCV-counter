@@ -18,6 +18,10 @@ module sys_tb_top();
   initial begin
     $dumpfile("waveout.vcd");
     $dumpvars(0, sys_tb_top);
+    // dump ITCM contents to check firmware preload (adjust hierarchy if needed)
+    //`ifdef E203_LOAD_PROGRAM
+    //  $dumpvars(0, sys_tb_top.uut.e203_soc_ins.u_e203_subsys_top.u_e203_subsys_mems.u_sirv_mem_fab.u_itcm_ram.mem_r);
+    //`endif
   end
  `endif
 
