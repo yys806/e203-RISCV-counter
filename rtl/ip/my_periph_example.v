@@ -116,7 +116,7 @@ module my_periph_example(
     // Sequential logic
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            ctrl_reg   <= 32'h0000_0301; // enable=1, auto_en=0 default, divider=0x300 (reduce flicker, let CPU drive)
+            ctrl_reg   <= 32'h0000_0203; // enable=1, auto_en=1 default, divider=0x200 (balanced refresh)
             data_reg   <= 32'h0000_0000;
             auto_data  <= 16'd0;
             rsp_rdata  <= 32'h0;

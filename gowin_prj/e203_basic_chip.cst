@@ -7,13 +7,13 @@ IO_PORT "clk_in"        IO_TYPE=LVCMOS33;
 IO_PORT "erstn"         IO_TYPE=LVCMOS33;
 
 // 4-digit 7-seg (LED board in PMOD2/3), active-low segments, digit enable active-high
-// LED SEG board on PMOD2 (J2) + PMOD1 (J3) with documented pins
-IO_LOC "seg_out[0]"     N8;   // SEG_A
-IO_LOC "seg_out[1]"     L9;   // SEG_B
-IO_LOC "seg_out[2]"     N7;   // SEG_C
-IO_LOC "seg_out[3]"     N9;   // SEG_D
-IO_LOC "seg_out[4]"     D11;  // SEG_E
-IO_LOC "seg_out[5]"     N6;   // SEG_F
+// LED SEG board on PMOD1+PMOD2 per actual wiring (top row J16..T12, bottom C12/B12)
+IO_LOC "seg_out[0]"     J16;  // SEG_A
+IO_LOC "seg_out[1]"     J14;  // SEG_B
+IO_LOC "seg_out[2]"     M15;  // SEG_C
+IO_LOC "seg_out[3]"     M14;  // SEG_D
+IO_LOC "seg_out[4]"     R11;  // SEG_E
+IO_LOC "seg_out[5]"     T12;  // SEG_F
 IO_LOC "seg_out[6]"     C12;  // SEG_G
 IO_LOC "seg_out[7]"     B12;  // SEG_DP
 IO_LOC "dig_out[0]"     A14;
