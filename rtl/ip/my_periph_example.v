@@ -44,6 +44,7 @@ module my_periph_example(
     // Registers
     reg [31:0] ctrl_reg;  // bit0 enable, [15:0] scan divider reload
     reg [31:0] data_reg;  // packed digit/dp fields
+    reg [15:0] auto_data; // internal free-running counter for fallback
 
     // ICB response handling
     reg [31:0] rsp_rdata;
@@ -76,6 +77,7 @@ module my_periph_example(
 
     wire [15:0] div_reload = (ctrl_reg[15:0] == 16'd0) ? 16'd1024 : ctrl_reg[15:0];
     wire        disp_en    = ctrl_reg[0];
+    wire        auto_en    = ctrl_reg[1];
 
     // Segment encoder for one digit (dp handled separately)
     function [6:0] encode7seg;
@@ -114,8 +116,9 @@ module my_periph_example(
     // Sequential logic
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            ctrl_reg   <= 32'h0000_0401; // enable=1, default divider
+            ctrl_reg   <= 32'h0000_0601; // enable=1, auto_en=1, default divider
             data_reg   <= 32'h0000_0000;
+            auto_data  <= 16'd0;
             rsp_rdata  <= 32'h0;
             rsp_valid  <= 1'b0;
             div_cnt    <= 16'd0;
@@ -135,6 +138,7 @@ module my_periph_example(
                 rsp_valid <= 1'b1;
             end else if (sel_data_wr) begin
                 data_reg  <= i_icb_cmd_wdata;
+                auto_data <= i_icb_cmd_wdata[15:0];
                 rsp_rdata <= data_reg;
                 rsp_valid <= 1'b1;
             end else if (sel_ctrl_rd) begin
@@ -151,6 +155,14 @@ module my_periph_example(
                 scan_idx <= scan_idx + 2'd1;
             end else begin
                 div_cnt  <= div_cnt - 16'd1;
+            end
+
+            // Internal auto counter as a fallback when CPU not writing
+            if (auto_en && sel_data_wr == 1'b0) begin
+                auto_data <= auto_data + 16'd1;
+                data_reg  <= data_reg; // hold unless we choose to mirror auto_data below
+                // Mirror auto_data into display when no ICB write
+                data_reg[15:0] <= auto_data + 16'd1;
             end
 
             // Active digit selection (internal active high)
@@ -175,8 +187,8 @@ module my_periph_example(
         end
     end
 
-    // Output mapping (common-cathode: segments active high, digit select active low)
+    // Output mapping (segments active high, digit select active high for this LED board)
     assign seg = disp_en ? seg_bits : 8'h00;
-    assign dig = disp_en ? ~dig_en  : 4'hF;
+    assign dig = disp_en ?  dig_en  : 4'b0000;
 
 endmodule

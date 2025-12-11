@@ -36,6 +36,7 @@ module e203_soc_demo (
     wire lfextclk;  // This clock should comes from the crystal pad generated low speed clock (32.768KHz)
 
     wire reset_n;
+    wire pll_lock;
 
     clk_unit clk_unit (.clkout_rtc(lfextclk), .reset(erstn), .clkin(clk_in), .clkout_system(hfextclk), .lock(pll_lock));
     

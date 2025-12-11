@@ -1399,6 +1399,7 @@ module e203_subsys_perips(
   wire [32-1:0]            my_periph_icb_rsp_rdata;
   wire [7:0]               my_seg;
   wire [3:0]               my_dig;
+  wire                     my_io_pad_out;
   
   wire                     pwm0_icb_cmd_valid;
   wire                     pwm0_icb_cmd_ready;
