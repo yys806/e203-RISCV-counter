@@ -75,7 +75,7 @@ module my_periph_example(
     reg [1:0]  scan_idx;
     reg [15:0] div_cnt;
 
-    wire [15:0] div_reload = (ctrl_reg[15:0] == 16'd0) ? 16'd1024 : ctrl_reg[15:0];
+    wire [15:0] div_reload = (ctrl_reg[15:0] == 16'd0) ? 16'd512 : ctrl_reg[15:0];
     wire        disp_en    = ctrl_reg[0];
     wire        auto_en    = ctrl_reg[1];
 
@@ -116,7 +116,7 @@ module my_periph_example(
     // Sequential logic
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            ctrl_reg   <= 32'h0000_0601; // enable=1, auto_en=1, default divider
+            ctrl_reg   <= 32'h0000_0203; // enable=1, auto_en=1, default divider=0x200 (faster refresh)
             data_reg   <= 32'h0000_0000;
             auto_data  <= 16'd0;
             rsp_rdata  <= 32'h0;
