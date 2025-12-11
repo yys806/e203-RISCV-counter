@@ -112,18 +112,18 @@ module my_periph_example(
     endfunction
 
     // Extract current digit nibbles and dp bits
-    wire [15:0] disp_data = auto_en ? auto_data : data_reg[15:0];
+    wire [15:0] disp_data = data_reg[15:0]; // force to data_reg only
     wire [3:0] digit0 = disp_data[3:0];
     wire [3:0] digit1 = disp_data[7:4];
     wire [3:0] digit2 = disp_data[11:8];
     wire [3:0] digit3 = disp_data[15:12];
-    wire [3:0] dp_bits = auto_en ? 4'h0 : data_reg[19:16]; // dp off in auto mode
+    wire [3:0] dp_bits = 4'h0; // force DP off
 
     // -----------------------------------------------------------------
     // Sequential logic
     always @(posedge clk or posedge reset) begin
         if (reset) begin
-            ctrl_reg     <= 32'h0000_0203; // enable=1, auto_en=1 default
+            ctrl_reg     <= 32'h0000_0001; // enable=1, auto_en=0 default
             data_reg     <= 32'h0000_0000;
             auto_data    <= 16'd0;
             rsp_rdata    <= 32'h0;
