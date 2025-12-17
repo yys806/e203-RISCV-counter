@@ -9,6 +9,9 @@ module e203_soc_demo (
     input   [31:0] gpio_in,
     output  [31:0] gpio_out,
 
+    output  [7:0]  seg_out,
+    output  [3:0]  cc,
+
     //QSPI DQ is bidir I/O with enable, and need pull-up enable
     input    [3:0] qspi_in,
     output   [3:0] qspi_out, 
@@ -295,6 +298,9 @@ e203_soc_top e203_soc_ins (
     .io_pads_gpio_31_o_ie    (),
     .io_pads_gpio_31_o_pue   (),
     .io_pads_gpio_31_o_ds    (),
+
+    .seg_out                 (seg_out),
+    .cc                      (cc),
 
     //QSPI SCK and CS is output without enable
     .io_pads_qspi_sck_o_oval  (qspi_sck),

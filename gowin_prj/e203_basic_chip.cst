@@ -30,4 +30,28 @@ IO_PORT "tdi"           PULL_MODE=UP;
 
 
 
+IO_LOC "seg_out[0]"     C12;
+IO_LOC "seg_out[1]"     B12;
+IO_LOC "seg_out[2]"     A14;
+IO_LOC "seg_out[3]"     B13;
+IO_LOC "seg_out[4]"     A15;
+IO_LOC "seg_out[5]"     B14;
+IO_LOC "seg_out[6]"     J16;
+IO_LOC "seg_out[7]"     J14;
+IO_LOC "cc[0]"          M15;
+IO_LOC "cc[1]"          M14;
+IO_LOC "cc[2]"          R11;
+IO_LOC "cc[3]"          T12;
 
+IO_PORT "seg_out[0]"    IO_TYPE=LVCMOS33;
+IO_PORT "seg_out[1]"    IO_TYPE=LVCMOS33;
+IO_PORT "seg_out[2]"    IO_TYPE=LVCMOS33;
+IO_PORT "seg_out[3]"    IO_TYPE=LVCMOS33;
+IO_PORT "seg_out[4]"    IO_TYPE=LVCMOS33;
+IO_PORT "seg_out[5]"    IO_TYPE=LVCMOS33;
+IO_PORT "seg_out[6]"    IO_TYPE=LVCMOS33;
+IO_PORT "seg_out[7]"    IO_TYPE=LVCMOS33;
+IO_PORT "cc[0]"         IO_TYPE=LVCMOS33;
+IO_PORT "cc[1]"         IO_TYPE=LVCMOS33;
+IO_PORT "cc[2]"         IO_TYPE=LVCMOS33;
+IO_PORT "cc[3]"         IO_TYPE=LVCMOS33;

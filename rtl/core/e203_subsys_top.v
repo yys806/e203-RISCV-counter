@@ -370,6 +370,9 @@ module e203_subsys_top(
   output io_pads_gpio_31_o_pue,
   output io_pads_gpio_31_o_ds,
 
+  output [7:0] seg_out,
+  output [3:0] cc,
+
   input   io_pads_qspi_sck_i_ival,
   output  io_pads_qspi_sck_o_oval,
   output  io_pads_qspi_sck_o_oe,
@@ -775,6 +778,9 @@ module e203_subsys_top(
     .io_pads_gpio_31_o_ie            (io_pads_gpio_31_o_ie),
     .io_pads_gpio_31_o_pue           (io_pads_gpio_31_o_pue),
     .io_pads_gpio_31_o_ds            (io_pads_gpio_31_o_ds),
+
+    .seg_out                         (seg_out),
+    .cc                              (cc),
 
     .io_pads_qspi_sck_i_ival    (io_pads_qspi_sck_i_ival    ),
     .io_pads_qspi_sck_o_oval    (io_pads_qspi_sck_o_oval    ),

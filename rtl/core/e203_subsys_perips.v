@@ -281,6 +281,9 @@ module e203_subsys_perips(
   output io_pads_gpio_31_o_pue,
   output io_pads_gpio_31_o_ds,
 
+  output [7:0] seg_out,
+  output [3:0] cc,
+
   input   io_pads_qspi_sck_i_ival,
   output  io_pads_qspi_sck_o_oval,
   output  io_pads_qspi_sck_o_oe,
@@ -1394,6 +1397,12 @@ module e203_subsys_perips(
   wire                     my_periph_icb_rsp_valid;
   wire                     my_periph_icb_rsp_ready;
   wire [32-1:0]            my_periph_icb_rsp_rdata;
+
+  wire [7:0]               my_seg_out;
+  wire [3:0]               my_cc;
+
+  assign seg_out = my_seg_out;
+  assign cc = my_cc;
   
   wire                     pwm0_icb_cmd_valid;
   wire                     pwm0_icb_cmd_ready;
@@ -2582,8 +2591,9 @@ my_periph_example u_my_periph_top(
     .i_icb_rsp_ready (my_periph_icb_rsp_ready),
     .i_icb_rsp_rdata (my_periph_icb_rsp_rdata), 
 
-    .io_interrupts_0_0 (my_irq),                
-    .io_pad_out       (my_io_pad_out)
+    .io_interrupts_0_0 (my_irq),
+    .seg_out           (my_seg_out),
+    .cc                (my_cc)
 );
 
   //  * QSPI0     

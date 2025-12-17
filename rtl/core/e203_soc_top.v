@@ -265,6 +265,9 @@ module e203_soc_top(
   output  io_pads_gpio_31_o_pue,
   output  io_pads_gpio_31_o_ds,
 
+  output [7:0] seg_out,
+  output [3:0] cc,
+
 
   //QSPI SCK and CS is output without enable
   output  io_pads_qspi_sck_o_oval,
@@ -662,6 +665,9 @@ module e203_soc_top(
   .io_pads_gpio_31_o_ie            (io_pads_gpio_31_o_ie),
   .io_pads_gpio_31_o_pue           (io_pads_gpio_31_o_pue),
   .io_pads_gpio_31_o_ds            (io_pads_gpio_31_o_ds),
+
+  .seg_out                         (seg_out),
+  .cc                              (cc),
 
   .io_pads_qspi_sck_i_ival    (1'b1 ),
   .io_pads_qspi_sck_o_oval    (io_pads_qspi_sck_o_oval ),
