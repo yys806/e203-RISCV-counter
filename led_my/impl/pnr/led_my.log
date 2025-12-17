@@ -1,0 +1,32 @@
+Reading netlist file: "D:\shen\3-code\ichip-code\led_my\impl\gwsynthesis\led_my.vg"
+Parsing netlist file "D:\shen\3-code\ichip-code\led_my\impl\gwsynthesis\led_my.vg" completed
+Processing netlist completed
+Reading constraint file: "D:\shen\3-code\ichip-code\led_my\src\led_seg_display.cst"
+Physical Constraint parsed completed
+Running placement......
+[10%] Placement Phase 0 completed
+[20%] Placement Phase 1 completed
+[30%] Placement Phase 2 completed
+WARN  (TA1132) :  'clk_in' was determined to be a clock but was not created.
+WARN  (TA1132) :  'clk_out_1hz' was determined to be a clock but was not created.
+WARN  (TA1132) :  'clk_out_200hz' was determined to be a clock but was not created.
+[50%] Placement Phase 3 completed
+Running routing......
+[60%] Routing Phase 0 completed
+[70%] Routing Phase 1 completed
+[80%] Routing Phase 2 completed
+[90%] Routing Phase 3 completed
+Running timing analysis......
+[95%] Timing analysis completed
+Placement and routing completed
+Bitstream generation in progress......
+Bitstream generation completed
+Running power analysis......
+[100%] Power analysis completed
+Generate file "D:\shen\3-code\ichip-code\led_my\impl\pnr\led_my.power.html" completed
+Generate file "D:\shen\3-code\ichip-code\led_my\impl\pnr\led_my.pin.html" completed
+Generate file "D:\shen\3-code\ichip-code\led_my\impl\pnr\led_my.rpt.html" completed
+Generate file "D:\shen\3-code\ichip-code\led_my\impl\pnr\led_my.rpt.txt" completed
+Generate file "D:\shen\3-code\ichip-code\led_my\impl\pnr\led_my.tr.html" completed
+Wed Dec 17 21:28:16 2025
+

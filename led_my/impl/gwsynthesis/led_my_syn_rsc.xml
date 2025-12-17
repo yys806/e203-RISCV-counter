@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Module name="led_seg_display" Register="18" Lut="40" T_Register="44(18)" T_Lut="93(40)">
+ <SubModule name="inst_clk_mng" Register="26" Lut="53" T_Register="26(26)" T_Lut="53(53)"/>
+</Module>

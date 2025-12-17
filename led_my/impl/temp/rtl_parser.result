@@ -1,0 +1,20 @@
+[
+ {
+  "InstFile" : "D:/shen/3-code/ichip-code/led_my/src/led_seg_display.v",
+  "InstLine" : 1,
+  "InstName" : "led_seg_display",
+  "ModuleFile" : "D:/shen/3-code/ichip-code/led_my/src/led_seg_display.v",
+  "ModuleLine" : 1,
+  "ModuleName" : "led_seg_display",
+  "SubInsts" : [
+   {
+    "InstFile" : "D:/shen/3-code/ichip-code/led_my/src/led_seg_display.v",
+    "InstLine" : 114,
+    "InstName" : "inst_clk_mng",
+    "ModuleFile" : "D:/shen/3-code/ichip-code/led_my/src/clk_mng.v",
+    "ModuleLine" : 1,
+    "ModuleName" : "clk_mng"
+   }
+  ]
+ }
+]

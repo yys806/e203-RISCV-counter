@@ -1,0 +1,33 @@
+GowinSynthesis start
+Running parser ...
+Analyzing Verilog file 'D:\shen\3-code\ichip-code\led_my\src\clk_mng.v'
+Analyzing Verilog file 'D:\shen\3-code\ichip-code\led_my\src\led_seg_display.v'
+Compiling module 'led_seg_display'("D:\shen\3-code\ichip-code\led_my\src\led_seg_display.v":1)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\shen\3-code\ichip-code\led_my\src\led_seg_display.v":38)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\shen\3-code\ichip-code\led_my\src\led_seg_display.v":41)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\shen\3-code\ichip-code\led_my\src\led_seg_display.v":44)
+WARN  (EX3791) : Expression size 5 truncated to fit in target size 4("D:\shen\3-code\ichip-code\led_my\src\led_seg_display.v":47)
+WARN  (EX3791) : Expression size 3 truncated to fit in target size 2("D:\shen\3-code\ichip-code\led_my\src\led_seg_display.v":61)
+Compiling module 'clk_mng'("D:\shen\3-code\ichip-code\led_my\src\clk_mng.v":1)
+WARN  (EX3791) : Expression size 19 truncated to fit in target size 18("D:\shen\3-code\ichip-code\led_my\src\clk_mng.v":28)
+WARN  (EX3791) : Expression size 9 truncated to fit in target size 8("D:\shen\3-code\ichip-code\led_my\src\clk_mng.v":45)
+NOTE  (EX0101) : Current top module is "led_seg_display"
+[5%] Running netlist conversion ...
+Running device independent optimization ...
+[10%] Optimizing Phase 0 completed
+[15%] Optimizing Phase 1 completed
+[25%] Optimizing Phase 2 completed
+Running inference ...
+[30%] Inferring Phase 0 completed
+[40%] Inferring Phase 1 completed
+[50%] Inferring Phase 2 completed
+[55%] Inferring Phase 3 completed
+Running technical mapping ...
+[60%] Tech-Mapping Phase 0 completed
+[65%] Tech-Mapping Phase 1 completed
+[75%] Tech-Mapping Phase 2 completed
+[80%] Tech-Mapping Phase 3 completed
+[90%] Tech-Mapping Phase 4 completed
+[95%] Generate netlist file "D:\shen\3-code\ichip-code\led_my\impl\gwsynthesis\led_my.vg" completed
+[100%] Generate report file "D:\shen\3-code\ichip-code\led_my\impl\gwsynthesis\led_my_syn.rpt.html" completed
+GowinSynthesis finish

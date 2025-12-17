@@ -1,0 +1,17 @@
+-d D:\shen\3-code\ichip-code\led_my\impl\gwsynthesis\led_my.vg
+-p GW2A-18C-PBGA256-8
+-pn GW2A-LV18PG256C8/I7
+-cst D:\shen\3-code\ichip-code\led_my\src\led_seg_display.cst
+-cfg D:\shen\3-code\ichip-code\led_my\impl\pnr\device.cfg
+-bit
+-tr
+-ph
+-timing
+-cst_error
+-convert_sdp32_36_to_sdp16_18
+-place_option 0
+-route_option 0
+-clock_route_order 0
+-correct_hold 1
+-route_maxfan 23
+-global_freq 100.000
