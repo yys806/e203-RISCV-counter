@@ -134,13 +134,22 @@ ITCM 通过 `ram.hex` 预加载程序（`E203_LOAD_PROGRAM` 已打开）：
 
 - 系统框图：
 
-![](img/block_diagram.svg)
+![系统框图](img/block_diagram.svg)
 
 
 - 显示结果：
 
-![](img/display_result.png)
+正常显示，数字递增（此处由于手机拍摄有频闪，显示不完全，但是肉眼可见的是完全的）
+![1](img/1.jpg)
+![2](img/2.jpg)
+
+- UART测试：
+
+![UART](img/UART.png)
+可以看到，信息正常通过串口回传到PC
 
 - 演示视频
 
 视频上传至百度网盘，链接为：
+（1）完整功能演示： https://pan.baidu.com/s/1A4V4LKAUiEN-B2Xkdip_lg?pwd=64sn
+（2）UART测试演示： https://pan.baidu.com/s/17By8YpW3NMpOSSXXEpd7mg?pwd=rmfk
