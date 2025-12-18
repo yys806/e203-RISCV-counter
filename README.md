@@ -130,15 +130,17 @@ ITCM 通过 `ram.hex` 预加载程序（`E203_LOAD_PROGRAM` 已打开）：
 - 扫描速度异常：确认 `rtl/ip/my_periph_example.v` 中 `CLK_HZ` 与系统时钟一致（默认 18 MHz）。
 - 显示错乱：确认 DATA 为 BCD，顺序 d3 d2 d1 d0。
 
-## 10. 图片占位（请自行替换）
-
-把你的截图/照片放到以下位置：
+## 10. 相关图片
 
 - 系统框图：
-![](img/block_diagram.png)
 
-- 仿真波形：
-![](img/waveform.png)
+![](img/block_diagram.svg)
+
 
 - 显示结果：
+
 ![](img/display_result.png)
+
+- 演示视频
+
+视频上传至百度网盘，链接为：
